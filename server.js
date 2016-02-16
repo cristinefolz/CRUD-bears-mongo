@@ -34,7 +34,7 @@ router.route('/bears')
 	.post(function(req, res){
 
 		var bear = new Bear();
-		
+
 		bear.name = req.body.name;
 		bear.age = req.body.age;
 		bear.gender = req.body.gender;
@@ -49,7 +49,13 @@ router.route('/bears')
 	})
 
     .get(function(req, res){
-    	res.json({title: "i am trying to make a get"});
+    	Bear.find(function(err, bears){   
+    		if(err){
+    			console.log(err);
+    		} else {
+    			res.json(bears);
+    		}
+    	})
     });
 
 //    .push();
