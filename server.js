@@ -90,6 +90,16 @@ router.route('/bears/:bear_id')
    	 		})
    	 	}
    	 })
+   	})
+
+   .delete(function(req, res){
+   	 Bear.remove({_id: req.params.bear_id}, function(err, bear){
+   	 	if(err){
+ 			console.log(err);
+   	 	} else{
+   	 		res.json({title: 'bear was successfully deleted'});
+   	 	}
+   	 })
    });
 
  //  .post();
