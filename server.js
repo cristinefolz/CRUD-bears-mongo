@@ -49,7 +49,7 @@ router.route('/bears')
 	})
 
     .get(function(req, res){
-    	Bear.find(function(err, bears){   
+    	Bear.find(function(err, bears){   //node style call back (err, bears)
     		if(err){
     			console.log(err);
     		} else {
@@ -58,13 +58,20 @@ router.route('/bears')
     	})
     });
 
-//    .push();
 
 
-// router.route('/bears/:bear_api')
-//    .get();
+router.route('/bears/:bear_id')
+   .get(function(req, res){
+   	 Bear.findById(req.params.bear_id, function(err, bear){  //req.params because the bear_id is coming in from the URL; findById comes with Mongoose
+ 		if(err){
+ 			console.log(err);
+ 		} else {
+ 			res.json(bear);
+ 		}
+   	 })
+   });
 
-//    .post();
+ //  .post();
 
 
 
