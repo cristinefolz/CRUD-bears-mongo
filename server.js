@@ -15,6 +15,16 @@ var Bear = require('./models/bear');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.set('view engine', 'ejs'); // config of app
+
+app.get('/', function(req, res){
+	res.render('index', {title: "ejs viewing magic"});  // view engine config allows us to render our index.ejs in our browser
+});
+
+app.get('/about', function(req, res){
+	res.render('about', {somethingSomething: "about something else", date: new Date()});
+});
+
 var port = process.env.PORT || 8080;   // set our port
 
 var router = express.Router();   // get an instance of router
