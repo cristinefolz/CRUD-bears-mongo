@@ -22,19 +22,21 @@ app.get('/', function(req, res){
 });
 
 app.get('/about', function(req, res){
-	var data = {};
-	data.title = 'About Page';
-	data.name = 'Cristine';
-	data.date = new Date();
-	res.render('about', data);	
+    var data ={};
+    data.title ="About Page";
+    data.name = "Lauren";
+    data.time = new Date();
+    res.render('about', data)
 });
 
 app.get('/bears', function(req, res){
-	var bears = {};
-	bears.title = 'All the Bears';
-	// bears.yyy = ;
-	// bears.zzz = ;
-	res.render('bears', bears);	
+	Bear.find(function(err, bears){   //node style call back (err, bears).  If all goes well with Bear.find, the results are returned in the 'bear' argument.  If something goes wrong, the first 'err' argument will be populated with an error object containing information about the problem.
+    		if(err){
+    			console.log(err);
+    		} else {
+    			res.render('bears', { bears: bears }) // bears value pulling from bears.js
+    		}
+    	})
 });
 
 var port = process.env.PORT || 8080;   // set our port
