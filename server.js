@@ -26,7 +26,15 @@ app.get('/about', function(req, res){
 	data.title = 'About Page';
 	data.name = 'Cristine';
 	data.date = new Date();
-	res.render('about', data);
+	res.render('about', data);	
+});
+
+app.get('/bears', function(req, res){
+	var bears = {};
+	bears.title = 'All the Bears';
+	// bears.yyy = ;
+	// bears.zzz = ;
+	res.render('bears', bears);	
 });
 
 var port = process.env.PORT || 8080;   // set our port
