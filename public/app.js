@@ -28,13 +28,13 @@ var createBear = function(event){
 	var age = $('#bearAge').val();
 	var gender = $('#bearGender').val();
 	var $table = $('#bearTable');
-	// alert('values are: ' + name + ', ' + age + ', ' + gender);     // to check our function so far
 
 	// create a bear with the values assigned to properties
 	var bear = {};
-	bear.name = name;
-	bear.age = age;
-	bear.gender = gender;
+		bear.name = name;
+		bear.age = age;
+		bear.gender = gender;
+
 
 	$.ajax({						         // ajax method to add bear to the dbase
 			url: '/api/bears/',
