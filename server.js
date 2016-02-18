@@ -11,19 +11,19 @@ var bearRouter = require('./routes/bears');
 
 var Bear = require('./models/bear');
 
-// mounting/requiring/using middleware
+// mounting/requiring/using middleware (middleware is software that acts as a bridge between OS/database and applications)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static('public'));  // config node app to know what to do with files in public folder (they will be served as static files)
 
-app.set('view engine', 'ejs'); // config of app
+app.set('view engine', 'ejs'); // view engine config allows us to render our index.ejs in our browser
 
 app.get('/', function(req, res){
-	res.render('index', {title: "ejs viewing magic"});  // view engine config allows us to render our index.ejs in our browser
+	res.render('index', {title: "ejs viewing magic"});  //index.ejs file will show in browser at localHost:8080
 });
 
-app.get('/about', function(req, res){
+app.get('/about', function(req, res){  //we hardcode values in a variable when we are not reaching out to a dbase
     var data ={};
     data.title ="About Page";
     data.name = "Cristine";
@@ -31,12 +31,15 @@ app.get('/about', function(req, res){
     res.render('about', data)
 });
 
-app.get('/bears', function(req, res){
-	Bear.find(function(err, bears){   //node style call back (err, bears).  If all goes well with Bear.find, the results are returned in the 'bear' argument.  If something goes wrong, the first 'err' argument will be populated with an error object containing information about the problem.
+app.get('/bears', function(req, res){  // when we have a database, 
+	Bear.find(function(err, data){   //node style 'error first callback' (err, bears).  If all goes well with Bear.find, the results are returned in the 'bear' argument.  If something goes wrong, the first 'err' argument will be populated with an error object containing information about the problem.
     		if(err){
     			console.log(err);
     		} else {
-    			res.render('bears', { bears: bears }) // bears value pulling from bears.js
+    			res.render('bears', { bears: data }) // bears value pulling from bears.js
+    			          //'bears' = '/bears' url
+    			          // bears: = an object that we can use in .ejs, that has info from Bear.find
+    			          // data = value from function parameter above
     		}
     	})
 });
@@ -60,5 +63,5 @@ router.get('/', function(req, res){
 // all of our routes will be prefixed with /api
 app.use('/api', bearRouter);
 
-app.listen(port);
-console.log('magic happens on port '+ port);
+app.listen(port); // starts the server
+console.log('magic happens on port '+ port);  // test the server

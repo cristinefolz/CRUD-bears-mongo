@@ -10,4 +10,4 @@ var BearSchema = new Schema({
 });
 
 module.exports = mongoose.model('Bear', BearSchema); // 'Bear' could be any name we want
-// mounting BearSchema (from line 6) into 'Bear'
+// mounting BearSchema (from line 6) into 'Bear' (create an object called Bear and use Bear schema)

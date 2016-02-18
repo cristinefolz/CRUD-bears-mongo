@@ -13,9 +13,7 @@ var deleteBear = function(event){
 			console.log('delete the bear!')
 			bear.remove();  // remove the html table row
 		})
-
 	}	
-
 };
 
 
