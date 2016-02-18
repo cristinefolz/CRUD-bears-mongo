@@ -15,6 +15,8 @@ var Bear = require('./models/bear');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(express.static('public'));  // config node app to know what to do with files in public folder (they will be served as static files)
+
 app.set('view engine', 'ejs'); // config of app
 
 app.get('/', function(req, res){
@@ -24,7 +26,7 @@ app.get('/', function(req, res){
 app.get('/about', function(req, res){
     var data ={};
     data.title ="About Page";
-    data.name = "Lauren";
+    data.name = "Cristine";
     data.time = new Date();
     res.render('about', data)
 });
