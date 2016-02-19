@@ -37,7 +37,7 @@ app.get('/bears', function(req, res){  // when we have a database,
     			console.log(err);
     		} else {
     			res.render('bears', { bears: data }) // bears value pulling from bears.js
-    			          //'bears' = '/bears' url
+    			          //'bears' = the bears.ejs file that we will be rendering the data in
     			          // bears: = an object that we can use in .ejs, that has info from Bear.find
     			          // data = value from function parameter above
     		}
