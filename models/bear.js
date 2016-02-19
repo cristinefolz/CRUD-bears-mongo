@@ -1,7 +1,9 @@
 // app/models/bear.js
+// create schematic (representation for the outline of a Model) for our database bears
+// when we create bears in our database, this is what they will each look like
 
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var Schema = mongoose.Schema;  // constructor function
 
 var BearSchema = new Schema({
 	name: String,

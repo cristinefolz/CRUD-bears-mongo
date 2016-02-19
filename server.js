@@ -1,6 +1,6 @@
 // --- call the packages we need
-var express = require('express');
-var app = express();
+var express = require('express');  // express is a library
+var app = express(); // we are calling the express function
 var bodyParser = require('body-parser');
 
 // when starting up, use the 'animals' database
@@ -11,7 +11,7 @@ var bearRouter = require('./routes/bears');
 
 var Bear = require('./models/bear');
 
-// mounting/requiring/using middleware (middleware is software that acts as a bridge between OS/database and applications)
+// app.use = mounting/requiring/using middleware (middleware is software that acts as a bridge between OS/database and applications)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -54,14 +54,14 @@ router.use(function(req, res, next){
 	next();
 });
 
-
+// '/' = the path off of the app.use ('/api') to see the 
 router.get('/', function(req, res){
 	res.json({message: "horray! you are looking at Cristine's CRUD bear project!"});
 });
 
 
-// all of our routes will be prefixed with /api
+// all of our routes (router.xx) will be prefixed with /api
 app.use('/api', bearRouter);
 
-app.listen(port); // starts the server
+app.listen(port); // starts the server (node is server-side js; when we debug, we do it in our terminal)
 console.log('magic happens on port '+ port);  // test the server
